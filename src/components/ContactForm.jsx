@@ -1,12 +1,40 @@
-// ContactForm.jsx
-import React, { Component } from 'react';
+import React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from './Button';
 import styles from './ContactForm.module.css';
 
 class ContactForm extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      number: '',
+    };
+  }
+
+  handleFormChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value,
+    });
+  };
+
+  handleAddButtonClick = () => {
+    const { name, number } = this.state;
+    const { onAddContact } = this.props;
+
+    if (name.trim() !== '' && number.trim() !== '') {
+      onAddContact(name, number);
+      this.setState({
+        name: '',
+        number: '',
+      });
+    }
+  };
+
   render() {
-    const { name, number, onFormChange, onAddContact } = this.props;
+    const { name, number } = this.state;
 
     return (
       <form className={styles.container}>
@@ -16,11 +44,9 @@ class ContactForm extends Component {
             className={styles.input}
             type="text"
             name="name"
-            pattern="^[a-zA-Z]+([' -]?[a-zA-Z ]*)*$"
-            title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
             value={name}
-            onChange={onFormChange}
+            onChange={this.handleFormChange}
           />
         </label>
 
@@ -30,15 +56,13 @@ class ContactForm extends Component {
             className={styles.input}
             type="tel"
             name="number"
-            pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-            title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
             value={number}
-            onChange={onFormChange}
+            onChange={this.handleFormChange}
           />
         </label>
 
-        <Button type="button" action={onAddContact}>
+        <Button type="button" action={this.handleAddButtonClick}>
           Add contact
         </Button>
       </form>
@@ -47,8 +71,6 @@ class ContactForm extends Component {
 }
 
 ContactForm.propTypes = {
-  name: PropTypes.string.isRequired,
-  onFormChange: PropTypes.func.isRequired,
   onAddContact: PropTypes.func.isRequired,
 };
 
