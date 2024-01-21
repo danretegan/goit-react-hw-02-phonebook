@@ -1,5 +1,5 @@
-import React from 'react';
-import { Component } from 'react';
+// App.jsx
+import React, { Component } from 'react';
 import ContactForm from './ContactForm';
 import ContactList from './ContactList';
 import styles from './App.module.css';
@@ -17,7 +17,7 @@ class App extends Component {
         { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
         { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
       ],
-      filter: '', // Adăugăm un câmp pentru filtrare
+      filter: '',
       name: '',
       number: '',
     };
@@ -50,7 +50,6 @@ class App extends Component {
   render() {
     const { contacts, name, number, filter } = this.state;
 
-    // Filtrăm contactele în funcție de șirul de căutare:
     const filteredContacts = contacts.filter(contact =>
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
