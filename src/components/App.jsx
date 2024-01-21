@@ -64,6 +64,7 @@ class App extends Component {
           onFormChange={this.handleFormChange}
           onAddContact={this.handleAddContact}
         />
+        <h2>Contacts:</h2>
         <SearchFilter filter={filter} onFilterChange={this.handleFormChange} />
         <ContactList
           contacts={filteredContacts}
