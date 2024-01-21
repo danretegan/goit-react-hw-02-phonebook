@@ -71,6 +71,7 @@ class App extends Component {
         <ContactList
           contacts={filteredContacts}
           onDeleteContact={this.handleDeleteContact}
+          className={styles.list}
         />
       </div>
     );

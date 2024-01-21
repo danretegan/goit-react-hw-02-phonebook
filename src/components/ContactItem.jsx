@@ -5,12 +5,12 @@ import Button from './Button';
 
 const ContactItem = ({ contact, onDeleteContact }) => {
   return (
-    <>
-      <li className={styles.item}>
-        {contact.name}: {contact.number}
+    <div className={styles.item}>
+      <li>
+        <strong>{contact.name}</strong>: <br /> {contact.number}
       </li>
       <Button action={() => onDeleteContact(contact.id)}>Delete</Button>
-    </>
+    </div>
   );
 };
 
