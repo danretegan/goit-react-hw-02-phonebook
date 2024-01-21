@@ -4,6 +4,7 @@ import ContactForm from './ContactForm';
 import ContactList from './ContactList';
 import styles from './App.module.css';
 import { nanoid } from 'nanoid';
+import SearchFilter from './SearchFilter';
 
 class App extends Component {
   constructor(props) {
@@ -63,6 +64,7 @@ class App extends Component {
           onFormChange={this.handleFormChange}
           onAddContact={this.handleAddContact}
         />
+        <SearchFilter filter={filter} onFilterChange={this.handleFormChange} />
         <ContactList
           contacts={filteredContacts}
           onFilterChange={this.handleFormChange}
