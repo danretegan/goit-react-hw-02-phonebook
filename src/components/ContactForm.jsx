@@ -1,4 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from './Button';
 import styles from './ContactForm.module.css';
@@ -23,13 +24,17 @@ class ContactForm extends Component {
     const { name, number } = this.state;
     const { onAddContact, contacts } = this.props;
 
-    // Verificăm dacă numele există deja în lista de contacte:
+    // Verificăm dacă numele sau numărul există deja în lista de contacte:
     const nameExists = contacts.some(
       contact => contact.name.toLowerCase() === name.toLowerCase()
     );
 
+    const numberExists = contacts.some(contact => contact.number === number);
+
     if (nameExists) {
       alert(`${name} is already in contacts!`);
+    } else if (numberExists) {
+      alert(`${number} is already in contacts!`);
     } else if (name.trim() !== '' && number.trim() !== '') {
       // Adăugăm contactul doar dacă nu există și câmpurile nu sunt goale:
       onAddContact(name, number);
