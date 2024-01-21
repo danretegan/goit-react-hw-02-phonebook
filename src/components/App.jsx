@@ -1,4 +1,3 @@
-// App.jsx
 import React from 'react';
 import { Component } from 'react';
 import ContactForm from './ContactForm';
@@ -11,17 +10,21 @@ class App extends Component {
     super(props);
 
     this.state = {
-      contacts: [],
+      contacts: [
+        { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
+        { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+        { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+        { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+      ],
+      filter: '', // Adăugăm un câmp pentru filtrare
       name: '',
       number: '',
     };
   }
 
   handleAddContact = () => {
-    const { name } = this.state;
-    const { number } = this.state;
-    if ((name.trim() !== '') & (number.trim() !== '')) {
-      console.log('The unique ID is:', nanoid());
+    const { name, number } = this.state;
+    if (name.trim() !== '' && number.trim() !== '') {
       const newContact = {
         id: nanoid(),
         name: name.trim(),
@@ -44,7 +47,12 @@ class App extends Component {
   };
 
   render() {
-    const { contacts, name, number } = this.state;
+    const { contacts, name, number, filter } = this.state;
+
+    // Filtrăm contactele în funcție de șirul de căutare:
+    const filteredContacts = contacts.filter(contact =>
+      contact.name.toLowerCase().includes(filter.toLowerCase())
+    );
 
     return (
       <div className={styles.container}>
@@ -55,7 +63,10 @@ class App extends Component {
           onFormChange={this.handleFormChange}
           onAddContact={this.handleAddContact}
         />
-        <ContactList contacts={contacts} />
+        <ContactList
+          contacts={filteredContacts}
+          onFilterChange={this.handleFormChange}
+        />
       </div>
     );
   }

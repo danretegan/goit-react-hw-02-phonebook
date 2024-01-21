@@ -1,19 +1,39 @@
 import React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ContactList.module.css';
 
-const ContactList = ({ contacts }) => {
-  return (
-    <ul className={styles.container}>
-      <h2 className={styles.title}>Contacts:</h2>
-      {contacts.map(contact => (
-        <li key={contact.id}>
-          {contact.name}: {contact.number}
-        </li>
-      ))}
-    </ul>
-  );
-};
+class ContactList extends Component {
+  render() {
+    const { contacts, onFilterChange } = this.props;
+
+    return (
+      <div className={styles.container}>
+        <form className={styles.form}>
+          <h2 className={styles.title}>Contacts:</h2>
+          <label className={styles.label}>
+            Find contact by name:
+            <input
+              className={styles.input}
+              type="text"
+              name="filter"
+              value={this.props.filter}
+              onInput={onFilterChange}
+            />
+          </label>
+        </form>
+
+        <ul>
+          {contacts.map(contact => (
+            <li key={contact.id}>
+              {contact.name}: {contact.number}
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  }
+}
 
 ContactList.propTypes = {
   contacts: PropTypes.arrayOf(
@@ -22,6 +42,7 @@ ContactList.propTypes = {
       name: PropTypes.string.isRequired,
     })
   ).isRequired,
+  onFilterChange: PropTypes.func.isRequired,
 };
 
 export default ContactList;

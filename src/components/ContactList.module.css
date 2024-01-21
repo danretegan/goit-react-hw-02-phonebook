@@ -2,3 +2,11 @@
   color: brown;
   margin: 0;
 }
+
+.label {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin-bottom: 20px;
+  gap: 1rem;
+}
