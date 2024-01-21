@@ -10,9 +10,13 @@ class App extends Component {
   state = {
     contacts: [
       { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
+      { id: 'id-2', name: 'Hermione K', number: '443 (89) 12' },
       { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
+      {
+        id: 'id-4',
+        name: "Charles de-Batz de Castelmore d'Artagnan",
+        number: '+227-91-26',
+      },
     ],
     filter: '', // Adăugăm un câmp pentru filtrare
   };
@@ -38,6 +42,12 @@ class App extends Component {
     });
   };
 
+  handleDeleteContact = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+    }));
+  };
+
   render() {
     const { contacts, filter } = this.state;
 
@@ -58,7 +68,10 @@ class App extends Component {
           filter={filter}
           onFilterChange={this.handleFilterChange}
         />
-        <ContactList contacts={filteredContacts} />
+        <ContactList
+          contacts={filteredContacts}
+          onDeleteContact={this.handleDeleteContact}
+        />
       </div>
     );
   }

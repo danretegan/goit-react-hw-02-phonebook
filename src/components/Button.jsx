@@ -8,19 +8,19 @@ function Button({ children, action, type = 'button' }) {
   const activeColor = 'blue';
 
   const style = css`
-    padding: 8px 16px;
     background-color: ${color};
-
-    font-size: 14px;
-    font-weight: 700;
-    line-height: 24px;
-    letter-spacing: 1.25px;
-    text-align: center;
-    text-transform: uppercase;
-    outline: none;
     border: none;
+    border-radius: 4px;
     color: white;
     cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 1.25px;
+    line-height: 24px;
+    outline: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-transform: uppercase;
 
     &:hover,
     &:focus {

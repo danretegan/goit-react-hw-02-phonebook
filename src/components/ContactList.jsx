@@ -3,12 +3,16 @@ import PropTypes from 'prop-types';
 import styles from './ContactList.module.css';
 import ContactItem from './ContactItem';
 
-const ContactList = ({ contacts }) => {
+const ContactList = ({ contacts, onDeleteContact }) => {
   return (
     <div className={styles.container}>
-      <ul>
+      <ul className={styles.label}>
         {contacts.map(contact => (
-          <ContactItem key={contact.id} contact={contact} />
+          <ContactItem
+            key={contact.id}
+            contact={contact}
+            onDeleteContact={onDeleteContact}
+          />
         ))}
       </ul>
     </div>
@@ -23,6 +27,7 @@ ContactList.propTypes = {
       number: PropTypes.string.isRequired,
     })
   ).isRequired,
+  onDeleteContact: PropTypes.func.isRequired,
 };
 
 export default ContactList;

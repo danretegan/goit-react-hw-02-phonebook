@@ -1,13 +1,6 @@
 .container {
-  color: brown;
-  margin: 0;
-  font-size: 18px;
-}
-
-.label {
   display: flex;
   flex-direction: column;
-  width: 280px;
-  margin-bottom: 20px;
-  gap: 1rem;
+  color: brown;
+  font-size: 16px;
 }
