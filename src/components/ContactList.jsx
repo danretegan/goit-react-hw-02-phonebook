@@ -7,7 +7,9 @@ const ContactList = ({ contacts }) => {
     <ul className={styles.container}>
       <h2 className={styles.title}>Contacts:</h2>
       {contacts.map(contact => (
-        <li key={contact.id}>{contact.name}</li>
+        <li key={contact.id}>
+          {contact.name}: {contact.number}
+        </li>
       ))}
     </ul>
   );

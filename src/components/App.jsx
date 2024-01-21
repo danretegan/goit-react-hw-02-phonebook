@@ -1,4 +1,4 @@
-
+// App.jsx
 import React from 'react';
 import { Component } from 'react';
 import ContactForm from './ContactForm';
@@ -13,38 +13,46 @@ class App extends Component {
     this.state = {
       contacts: [],
       name: '',
+      number: '',
     };
   }
 
   handleAddContact = () => {
     const { name } = this.state;
-    if (name.trim() !== '') {
+    const { number } = this.state;
+    if ((name.trim() !== '') & (number.trim() !== '')) {
       console.log('The unique ID is:', nanoid());
       const newContact = {
         id: nanoid(),
         name: name.trim(),
+        number: number.trim(),
       };
 
       this.setState(prevState => ({
         contacts: [...prevState.contacts, newContact],
         name: '',
+        number: '',
       }));
     }
   };
 
-  handleNameChange = event => {
-    this.setState({ name: event.target.value });
+  handleFormChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value,
+    });
   };
 
   render() {
-    const { contacts, name } = this.state;
+    const { contacts, name, number } = this.state;
 
     return (
       <div className={styles.container}>
         <h1>Phonebook</h1>
         <ContactForm
           name={name}
-          onNameChange={this.handleNameChange}
+          number={number}
+          onFormChange={this.handleFormChange}
           onAddContact={this.handleAddContact}
         />
         <ContactList contacts={contacts} />
