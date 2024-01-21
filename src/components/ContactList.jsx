@@ -2,6 +2,7 @@ import React from 'react';
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import styles from './ContactList.module.css';
+import ContactItem from './ContactItem';
 
 class ContactList extends Component {
   render() {
@@ -11,9 +12,7 @@ class ContactList extends Component {
       <div className={styles.container}>
         <ul>
           {contacts.map(contact => (
-            <li key={contact.id}>
-              {contact.name}: {contact.number}
-            </li>
+            <ContactItem key={contact.id} contact={contact} />
           ))}
         </ul>
       </div>
