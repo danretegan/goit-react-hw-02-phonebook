@@ -9,13 +9,14 @@ import styles from './App.module.css';
 class App extends Component {
   state = {
     contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione K', number: '443 (89) 12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
+      { id: 'id-0', name: 'Dan Retegan', number: '+40 753 023 616' },
+      { id: 'id-1', name: 'Rosie Simpson', number: '459-123-563' },
+      { id: 'id-2', name: 'Hermione Kant', number: '443 (895) 123' },
+      { id: 'id-3', name: 'Eden Clements', number: '645-177-799' },
       {
         id: 'id-4',
         name: "Charles de-Batz de Castelmore d'Artagnan",
-        number: '+227-91-26',
+        number: '+01 227-911-266',
       },
     ],
     filter: '', // Adăugăm un câmp pentru filtrare
