@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './ContactItem.module.css';
-import Button from './Button';
+import Button from '../Button';
 
 const ContactItem = ({ contact, onDeleteContact }) => {
   return (
